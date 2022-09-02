@@ -56,6 +56,7 @@ function Home() {
         let shuffledGameCards = shuffle(ownedCards)
         dispatch({ type: "SET_GAME_CARDS", gameCards: shuffledGameCards })
         dispatch({ type: "START_GAME" })
+        history.push('/game')
     }
  
     return (

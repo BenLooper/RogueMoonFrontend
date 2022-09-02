@@ -21,41 +21,41 @@ const App = () => {
   //check for token in localStorage
   //if there is one, fetch it in useEffect()
   //if not, redirect to login
-  useEffect(() => {
-    if (window.localStorage.token && !(gameOn)) {
-      fetch('http://localhost:3000/auth', {
-        method: 'GET',
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": `Bearer ${window.localStorage.token}`
-        }
-      })
-        .then(res => res.json())
-        .then(userInfo => {
-          dispatch({ type: 'SET_USER', user: userInfo.user, ownedCards: userInfo.cards, games: userInfo.games })
-          history.push('/')
-        })
-    }
-    else if (window.localStorage.token && gameOn) {
-      fetch('http://localhost:3000/auth', {
-        method: 'GET',
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": `Bearer ${window.localStorage.token}`
-        }
-      })
-        .then(res => res.json())
-        .then(userInfo => {
-          dispatch({ type: 'SET_USER', user: userInfo.user, ownedCards: userInfo.cards, games: userInfo.games })
-          history.push('/game')
-        })
-    }
-    else {
-      history.push('/login')
-    }
-  })
+  // useEffect(() => {
+  //   if (window.localStorage.token && !(gameOn)) {
+  //     fetch('http://localhost:3000/auth', {
+  //       method: 'GET',
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Accept": "application/json",
+  //         "Authorization": `Bearer ${window.localStorage.token}`
+  //       }
+  //     })
+  //       .then(res => res.json())
+  //       .then(userInfo => {
+  //         dispatch({ type: 'SET_USER', user: userInfo.user, ownedCards: userInfo.cards, games: userInfo.games })
+  //         history.push('/')
+  //       })
+  //   }
+  //   else if (window.localStorage.token && gameOn) {
+  //     fetch('http://localhost:3000/auth', {
+  //       method: 'GET',
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Accept": "application/json",
+  //         "Authorization": `Bearer ${window.localStorage.token}`
+  //       }
+  //     })
+  //       .then(res => res.json())
+  //       .then(userInfo => {
+  //         dispatch({ type: 'SET_USER', user: userInfo.user, ownedCards: userInfo.cards, games: userInfo.games })
+  //         history.push('/game')
+  //       })
+  //   }
+  //   else {
+  //     history.push('/login')
+  //   }
+  // })
 
   return (
     <Router history={history}>
