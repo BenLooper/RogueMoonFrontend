@@ -1,9 +1,39 @@
+const ownedCards = [
+    { id: 1, name: 'Develop', image: 'https://opengameart.org/sites/default/files/styles/medium/public/coruscant_by_night_by_jfliesenborghs-d93rhyn_500.jpg', flavor_text: 'Level the playing field', is_special: true, role: 'env', strength: 0, ability: 'develop' },
+    { id: 2, name: 'Cold of Space', image: 'https://picsum.photos/200/300', flavor_text: 'So cold...', is_special: true, role: 'env', strength: 0, ability: 'cold' },
+    { id: 3, name: "Rocky Terrain", image: 'https://picsum.photos/200/300', flavor_text: "Too many rocks!", is_special: true, role: 'env', strength: 0, ability: 'rocky' },
+    { id: 4, name: "Solar Flare", image: 'https://picsum.photos/200/300', flavor_text: "Solar Flare, get to the surface!", is_special: true, role: 'env', strength: 0, ability: 'flare' },
+    { id: 5, name: "Drone", image: 'https://picsum.photos/200/300', flavor_text: "Stupid hunk of junk...", is_special: true, role: 'foot', strength: 0, ability: 'decoy' },
+    { id: 6, name: "Talon Fighter", image: 'https://icon-library.com/images/pngtree-spacecraftspaceshipshipspacealien-line-icon--vector-isol-png-image_310939.jpg', flavor_text: "It feels weird to shoot at the moon", is_special: false, role: 'space', strength: 6, ability: null },
+    { id: 7, name: "Space Marine", image: 'https://picsum.photos/200/300', flavor_text: "Here I was thinking I'd end up in Hawaii", is_special: false, role: 'foot', strength: 4, ability: 'close-combat' },
+    { id: 8, name: "Talon Bomber", image: 'https://picsum.photos/200/300', flavor_text: "Ok this feels a little unfair...", is_special: false, role: 'space', strength: 8, ability: 'overwhelm' },
+    { id: 9, name: "Talon Skiff", image: 'https://picsum.photos/200/300', flavor_text: "They won't even see us coming", is_special: false, role: 'ground', strength: 5, ability: 'overwhelm' },
+    { id: 10, name: 'The Red Blur', image: 'https://picsum.photos/200/300', flavor_text: "This better have a decent payout", is_special: false, role: 'ground', strength: 6 },
+    { id: 11, name: 'Repair Ship', image: 'https://picsum.photos/200/300', flavor_text: "If you didn't fly so badly, you wouldn't need us", is_special: false, role: 'space', strength: 5, ability: 'revive' },
+    { id: 12, name: 'Brave Pilot', image: 'https://picsum.photos/200/300', flavor_text: "Follow me to victory", is_special: false, role: 'space', strength: 1, ability: 'inspire' },
+    { id: 13, name: 'Mag Bike', image: 'https://picsum.photos/200/300', flavor_text: "To be honest, this is more of a canon than a bike", is_special: false, role: 'ground', strength: 5 },
+    { id: 14, name: 'Envoy Teron', image: 'https://picsum.photos/200/300', flavor_text: "I wish he'd just go back to Iowa already", is_special: false, role: 'foot', strength: 5, ability: 'spy' },
+    { id: 15, name: 'Miner A', image: 'https://picsum.photos/200/300', flavor_text: "You think this is bad, try spending a day working the lunar core", is_special: false, role: 'foot', strength: 1 },
+    { id: 16, name: 'Miner B', image: 'https://picsum.photos/200/300', flavor_text: "Maybe we'll finally get paid?", is_special: false, role: 'foot', strength: 1 },
+    { id: 17, name: "Lunar Citizen", image: 'https://picsum.photos/200/300', flavor_text: "I can't TAKE IT ANYMORE", is_special: false, role: 'foot', strength: 1 },
+    { id: 18, name: "Jury rigged mining cart", image: 'https://picsum.photos/200/300', flavor_text: "I can't believe this works", is_special: false, role: 'ground', strength: 4 },
+    { id: 19, name: "Old Era Rover", image: 'https://picsum.photos/200/300', flavor_text: "Hey, look what I found!", is_special: false, role: 'ground', strength: 4 },
+    { id: 20, name: "Sheil", image: 'https://picsum.photos/200/300', flavor_text: 'REVOLUTION!', is_special: false, role: 'foot', strength: 5 },
+    { id: 21, name: "Rachel the Rager", image: 'https://picsum.photos/200/300', flavor_text: 'Oh YEAH baby', is_special: false, role: 'ground', strength: 5 },
+    { id: 22, name: "Talon Frigate", image: 'https://picsum.photos/200/300', flavor_text: "We FINALLY get to use these guns", is_special: false, role: 'space', strength: 6 },
+    { id: 23, name: "ID XQYZ24", image: 'https://picsum.photos/200/300', flavor_text: "You sure you know how to fly this thing?", is_special: false, role: 'space', strength: 6 },
+    { id: 24, name: "Dr. Algo", image: 'https://picsum.photos/200/300', flavor_text: "This is all my fault...", is_special: false, role: 'foot', strength: 5, ability: 'spy' },
+    { id: 25, name: "Freedom Fighter", image: 'https://picsum.photos/200/300', flavor_text: 'I hope I can put this on my resume', is_special: false, role: 'foot', strength: 2 },
+    { id: 26, name: "Exosuit Miner", image: 'https://picsum.photos/200/300', flavor_text: "I feel like a GOD", is_special: false, role: 'foot', strength: 5 },
+    { id: 27, name: 'Drew MoonWalker', image: 'https://picsum.photos/200/300', flavor_text: "Do ya'll have any beer?", is_special: false, role: 'foot', strength: 10, ability: 'mock' },
+]
+
 export const initialState = {
     //login
     usernameInput: '',
     passwordInput: '',
-    user: {},
-    ownedCards: [],
+    user: { username: "TEST" },
+    ownedCards: ownedCards,
     games: [],
 
     //gameboard
@@ -46,6 +76,7 @@ export const initialState = {
     userVictory: null
 }
 
+
 const rowScore = (array) => {
     let score = 0
     for (let i = 0; i < array.length; i++) {
@@ -73,15 +104,15 @@ export const reducer = (state, action) => {
             break;
 
         case 'SET_USER':
-            return { ...state, user: action.user, ownedCards: action.ownedCards, games: action.games}
+            return { ...state, user: action.user, ownedCards: action.ownedCards, games: action.games }
             break;
 
         case 'START_GAME':
-            return{...state, gameOn:true}
-            break; 
+            return { ...state, gameOn: true }
+            break;
 
         case 'SET_GAME_CARDS':
-            return{...state, gameCards: action.gameCards}
+            return { ...state, gameCards: action.gameCards }
             break;
 
         case 'SET_ENEMY_GAME_CARDS':
@@ -98,7 +129,7 @@ export const reducer = (state, action) => {
             let newEnemyGameCards = state.enemyGameCards.filter(card => !(newEnemyHand.includes(card)))
             return {
                 ...state,
-                gameStart:true,
+                gameStart: true,
                 gameCards: newGameCards,
                 enemyGameCards: newEnemyGameCards,
                 hand: newHand,
@@ -108,6 +139,7 @@ export const reducer = (state, action) => {
             break;
 
         case 'PLAY_CARD':
+
             let role = action.role
 
             //Remove the card from hand
@@ -197,10 +229,10 @@ export const reducer = (state, action) => {
 
         case 'ROUND_OVER':
             if (state.userScore >= state.enemyScore) {
-                return { ...state, enemyReactors: (state.enemyReactors - 1)}
+                return { ...state, enemyReactors: (state.enemyReactors - 1) }
             }
             else if (state.userScore < state.enemyScore) {
-                return { ...state, userReactors: (state.userReactors - 1)}
+                return { ...state, userReactors: (state.userReactors - 1) }
             }
             break;
 
@@ -249,7 +281,7 @@ export const reducer = (state, action) => {
                 enemyReactors: 2,
                 env: [],
                 gameOn: false,
-                gameStart:false,
+                gameStart: false,
                 userPass: false,
                 enemyPass: false,
                 userDiscard: [],
